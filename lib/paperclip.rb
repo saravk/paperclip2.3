@@ -235,7 +235,7 @@ module Paperclip
     def has_attached_file name, options = {}
       include InstanceMethods
 
-      write_inheritable_attribute(:attachment_definitions, {}) if attachment_definitions.nil?
+      class_attibute(:attachment_definitions, {}) if attachment_definitions.nil?
       attachment_definitions[name] = {:validations => []}.merge(options)
 
       after_save :save_attached_files
