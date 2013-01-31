@@ -345,9 +345,9 @@ module Paperclip
 
     # Returns the attachment definitions defined by each call to
     # has_attached_file.
-    # def attachment_definitions
-    #   class_attribute(:attachment_definitions)
-    # end
+    def attachment_definitions
+      self.attachment_definitions
+    end
   end
 
   module InstanceMethods #:nodoc:
