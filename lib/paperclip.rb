@@ -37,7 +37,6 @@ require 'paperclip/thumbnail'
 require 'paperclip/interpolations'
 require 'paperclip/style'
 require 'paperclip/attachment'
-require 'paperclip/attachment_options'
 require 'paperclip/storage'
 require 'paperclip/callback_compatability'
 require 'paperclip/command_line'
@@ -241,8 +240,8 @@ module Paperclip
       else
         self.attachment_definitions = self.attachment_definitions.dup
       end
-      attachment_definitions[name] = Paperclip::AttachmentOptions.new(options)
 
+      attachment_definitions[name] = {:validations => []}.merge(options)
 
       after_save :save_attached_files
       before_destroy :destroy_attached_files
