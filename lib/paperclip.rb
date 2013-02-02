@@ -235,12 +235,7 @@ module Paperclip
     def has_attached_file name, options = {}
       include InstanceMethods
 
-      if attachment_definitions.nil?
-        self.attachment_definitions = {}
-      else
-        self.attachment_definitions = self.attachment_definitions.dup
-      end
-
+      class_attibute(:attachment_definitions, {}) if attachment_definitions.nil?
       attachment_definitions[name] = {:validations => []}.merge(options)
 
       after_save :save_attached_files
@@ -345,9 +340,9 @@ module Paperclip
 
     # Returns the attachment definitions defined by each call to
     # has_attached_file.
-    # def attachment_definitions
-    #   class_attribute(:attachment_definitions)
-    # end
+    def attachment_definitions
+      class_attribute(:attachment_definitions)
+    end
   end
 
   module InstanceMethods #:nodoc:
